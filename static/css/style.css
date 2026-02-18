@@ -1,0 +1,35 @@
+/* Gap Trader custom styles */
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.gap-up {
+    color: #198754;
+}
+
+.gap-down {
+    color: #dc3545;
+}
+
+.pnl-positive {
+    color: #198754;
+    font-weight: 600;
+}
+
+.pnl-negative {
+    color: #dc3545;
+    font-weight: 600;
+}
