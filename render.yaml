@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ai-gap-forecaster
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: FLASK_CONFIG
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FINNHUB_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.11.0"

@@ -1,5 +1,5 @@
 // Trade Journal CRUD
-const API_URL = '/api/trades';
+const API_URL = `${BASE_PATH}/api/trades`;
 
 async function loadTrades() {
     const status = document.getElementById('statusFilter').value;

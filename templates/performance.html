@@ -1,39 +1,40 @@
 {% extends "base.html" %}
-{% block title %}Performance - Gap Trader{% endblock %}
+{% block title %}Performance - AI Gap Forecaster{% endblock %}
 {% block content %}
 <h1 data-testid="page-title">Performance</h1>
+<div class="section-divider"></div>
 <p class="text-muted mb-4">Track your gap trading performance over time.</p>
 
 <!-- Summary Cards -->
-<div class="row mb-4">
-    <div class="col-md-3">
+<div class="row mb-4 g-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Total Trades</h6>
+                <h6 class="card-subtitle mb-2">Total Trades</h6>
                 <h3 data-testid="stats-total-trades" id="statsTotalTrades">-</h3>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Win Rate</h6>
+                <h6 class="card-subtitle mb-2">Win Rate</h6>
                 <h3 data-testid="stats-win-rate" id="statsWinRate">-</h3>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Total P&amp;L</h6>
+                <h6 class="card-subtitle mb-2">Total P&amp;L</h6>
                 <h3 data-testid="stats-total-pnl" id="statsTotalPnl">-</h3>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Profit Factor</h6>
+                <h6 class="card-subtitle mb-2">Profit Factor</h6>
                 <h3 data-testid="stats-profit-factor" id="statsProfitFactor">-</h3>
             </div>
         </div>
@@ -41,35 +42,35 @@
 </div>
 
 <!-- Secondary stats -->
-<div class="row mb-4">
-    <div class="col-md-3">
+<div class="row mb-4 g-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Best Trade</h6>
+                <h6 class="card-subtitle mb-2">Best Trade</h6>
                 <h4 data-testid="stats-best-trade" id="statsBestTrade">-</h4>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Worst Trade</h6>
+                <h6 class="card-subtitle mb-2">Worst Trade</h6>
                 <h4 data-testid="stats-worst-trade" id="statsWorstTrade">-</h4>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Avg Winner</h6>
+                <h6 class="card-subtitle mb-2">Avg Winner</h6>
                 <h4 id="statsAvgWinner">-</h4>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <div class="card text-center">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Avg Loser</h6>
+                <h6 class="card-subtitle mb-2">Avg Loser</h6>
                 <h4 id="statsAvgLoser">-</h4>
             </div>
         </div>
@@ -89,7 +90,7 @@
 </div>
 
 <!-- Charts -->
-<div class="row mb-4">
+<div class="row mb-4 g-3">
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">

@@ -8,7 +8,7 @@ document.getElementById('scannerForm').addEventListener('submit', async (e) => {
     const date = document.getElementById('dateInput').value;
 
     // Build query string
-    let url = `/api/scanner/gaps?min_gap=${minGap}&direction=${direction}`;
+    let url = `${BASE_PATH}/api/scanner/gaps?min_gap=${minGap}&direction=${direction}`;
     if (symbols) url += `&symbols=${encodeURIComponent(symbols)}`;
     if (date) url += `&date=${date}`;
 
@@ -73,7 +73,7 @@ function renderGaps(gaps) {
 }
 
 async function addToWatchlist(symbol, sector) {
-    const res = await fetch('/api/watchlist/', {
+    const res = await fetch(`${BASE_PATH}/api/watchlist/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symbol, sector })
@@ -88,7 +88,7 @@ function openTrade(symbol, gapDirection, currentPrice, gapPercent) {
         symbol, gap_type: 'gap_' + gapDirection,
         entry_price: currentPrice, gap_percent: gapPercent
     });
-    window.location.href = `/journal?${params}`;
+    window.location.href = `${BASE_PATH}/journal?${params}`;
 }
 
 // Flash messages

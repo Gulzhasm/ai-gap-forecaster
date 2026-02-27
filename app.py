@@ -1,10 +1,27 @@
 import os
 from flask import Flask
 from dotenv import load_dotenv
+from werkzeug.middleware.proxy_fix import ProxyFix
 from config import config
 from models import db
 
 load_dotenv()
+
+
+class PrefixMiddleware:
+    """Middleware that sets SCRIPT_NAME for subpath deployments."""
+
+    def __init__(self, app, prefix=''):
+        self.app = app
+        self.prefix = prefix
+
+    def __call__(self, environ, start_response):
+        if self.prefix:
+            environ['SCRIPT_NAME'] = self.prefix
+            path_info = environ.get('PATH_INFO', '')
+            if path_info.startswith(self.prefix):
+                environ['PATH_INFO'] = path_info[len(self.prefix):]
+        return self.app(environ, start_response)
 
 
 def create_app(config_name=None):
@@ -13,6 +30,14 @@ def create_app(config_name=None):
 
     app = Flask(__name__)
     app.config.from_object(config[config_name])
+
+    # Trust proxy headers from Vercel/Render
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+
+    # Apply subpath prefix for production
+    url_prefix = os.getenv('URL_PREFIX', '')
+    if url_prefix:
+        app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix=url_prefix)
 
     db.init_app(app)
 

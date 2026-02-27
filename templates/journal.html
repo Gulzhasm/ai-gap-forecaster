@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Trade Journal - Gap Trader{% endblock %}
+{% block title %}Trade Journal - AI Gap Forecaster{% endblock %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-2">
     <h1 data-testid="page-title">Trade Journal</h1>
     <button class="btn btn-primary" data-testid="trade-new-btn" data-bs-toggle="modal" data-bs-target="#tradeModal"
             onclick="resetTradeForm()">
         + New Trade
     </button>
 </div>
+<div class="section-divider"></div>
 
 <!-- Filters -->
 <div class="row mb-3">

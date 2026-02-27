@@ -8,9 +8,9 @@ async function loadStats() {
 
     // Fetch all stats in parallel
     const [summaryRes, seriesRes, gapTypeRes] = await Promise.all([
-        fetch('/api/stats/summary'),
-        fetch(`/api/stats/pnl-series?days=${days}`),
-        fetch('/api/stats/by-gap-type')
+        fetch(`${BASE_PATH}/api/stats/summary`),
+        fetch(`${BASE_PATH}/api/stats/pnl-series?days=${days}`),
+        fetch(`${BASE_PATH}/api/stats/by-gap-type`)
     ]);
 
     const summary = (await summaryRes.json()).data;

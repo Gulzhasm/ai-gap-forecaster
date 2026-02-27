@@ -7,7 +7,7 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
     SQLALCHEMY_DATABASE_URI = os.getenv(
         'DATABASE_URL',
-        f'sqlite:///{os.path.join(basedir, "instance", "gap_trader.db")}'
+        f'sqlite:///{os.path.join(basedir, "instance", "gap_forecaster.db")}'
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

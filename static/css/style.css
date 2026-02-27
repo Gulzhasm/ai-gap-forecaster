@@ -1,35 +1,404 @@
-/* Gap Trader custom styles */
+/* AI Gap Forecaster — matching gulzhasml.com design system */
+
+/* ── Design Tokens ─────────────────────────────────────── */
+:root {
+    --color-background: #ffffff;
+    --color-surface: #f8f9fa;
+    --color-surface-hover: #f1f3f4;
+    --color-border: #dadce0;
+    --color-text: #202124;
+    --color-text-secondary: #5f6368;
+    --color-text-muted: #80868b;
+    --color-accent: #1a73e8;
+    --color-accent-hover: #1557b0;
+    --color-accent-light: #e8f0fe;
+    --color-accent-secondary: #34a853;
+    --color-card-shadow: rgba(60, 64, 67, 0.15);
+    --color-card-shadow-hover: rgba(60, 64, 67, 0.3);
+}
+
+/* ── Global Reset ──────────────────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background-color: var(--color-accent);
+    color: white;
+}
+
 body {
-    background-color: #f8f9fa;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
 }
 
-.navbar-brand {
+/* ── Navbar — Frosted Glass ────────────────────────────── */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 0;
+}
+
+.navbar .navbar-brand {
+    color: var(--color-text) !important;
     font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
 }
 
+.navbar .navbar-brand:hover {
+    color: var(--color-accent) !important;
+}
+
+.navbar .nav-link {
+    color: var(--color-text-secondary) !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.5rem;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.navbar .nav-link:hover {
+    color: var(--color-text) !important;
+    background-color: var(--color-surface-hover);
+}
+
+.navbar .nav-link.active {
+    color: var(--color-accent) !important;
+    background-color: var(--color-accent-light);
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    border: 1px solid var(--color-border) !important;
+    padding: 0.375rem 0.625rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23202124' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* ── Cards ─────────────────────────────────────────────── */
 .card {
-    border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    transition: box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px var(--color-card-shadow);
+}
+
+.card-body {
+    padding: 1.25rem 1.5rem;
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.card-subtitle {
+    color: var(--color-text-muted) !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* ── Stat Cards (performance page) ─────────────────────── */
+.card.text-center h3,
+.card.text-center h4 {
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0;
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn-primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-surface-hover);
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+}
+
+.btn-success {
+    background-color: var(--color-accent-secondary);
+    border-color: var(--color-accent-secondary);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.btn-outline-primary {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    border-radius: 0.375rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+}
+
+.btn-outline-success {
+    color: var(--color-accent-secondary);
+    border-color: var(--color-accent-secondary);
+    border-radius: 0.375rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-outline-success:hover {
+    background-color: var(--color-accent-secondary);
+    border-color: var(--color-accent-secondary);
+    color: white;
+}
+
+.btn-outline-danger {
+    border-radius: 0.375rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+}
+
+/* ── Form Controls ─────────────────────────────────────── */
+.form-control,
+.form-select {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+.form-control::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.375rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* ── Tables ────────────────────────────────────────────── */
+.table {
+    font-size: 0.875rem;
+    color: var(--color-text);
 }
 
 .table th {
     font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    border-bottom: 2px solid var(--color-border);
+    padding: 0.75rem;
 }
 
+.table td {
+    padding: 0.75rem;
+    border-color: var(--color-surface);
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--color-surface-hover);
+}
+
+/* ── Badges ────────────────────────────────────────────── */
+.badge {
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+}
+
+.badge.bg-success {
+    background-color: var(--color-accent-secondary) !important;
+}
+
+.badge.bg-primary {
+    background-color: var(--color-accent) !important;
+}
+
+.badge.bg-secondary {
+    background-color: var(--color-surface) !important;
+    color: var(--color-text-muted) !important;
+    border: 1px solid var(--color-border);
+}
+
+.badge.bg-danger {
+    background-color: #ea4335 !important;
+}
+
+.badge.bg-warning {
+    background-color: #fbbc04 !important;
+    color: var(--color-text) !important;
+}
+
+/* ── Modals ────────────────────────────────────────────── */
+.modal-content {
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 32px rgba(60, 64, 67, 0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+}
+
+.modal-header .modal-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 0.75rem 1.5rem;
+}
+
+/* ── Typography ────────────────────────────────────────── */
+h1[data-testid="page-title"] {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+}
+
+h5 {
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 0.95rem;
+}
+
+/* ── Trade-specific ────────────────────────────────────── */
 .gap-up {
-    color: #198754;
+    color: var(--color-accent-secondary);
+    font-weight: 600;
 }
 
 .gap-down {
-    color: #dc3545;
+    color: #ea4335;
+    font-weight: 600;
 }
 
 .pnl-positive {
-    color: #198754;
-    font-weight: 600;
+    color: var(--color-accent-secondary);
+    font-weight: 700;
 }
 
 .pnl-negative {
-    color: #dc3545;
-    font-weight: 600;
+    color: #ea4335;
+    font-weight: 700;
+}
+
+/* ── Spinner ───────────────────────────────────────────── */
+.spinner-border.text-primary {
+    color: var(--color-accent) !important;
+}
+
+/* ── Alerts / Flash Messages ───────────────────────────── */
+.alert {
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    border: none;
+}
+
+.alert-success {
+    background-color: #e6f4ea;
+    color: #137333;
+}
+
+.alert-danger {
+    background-color: #fce8e6;
+    color: #c5221f;
+}
+
+.alert-warning {
+    background-color: #fef7e0;
+    color: #ea8600;
+}
+
+/* ── Footer ────────────────────────────────────────────── */
+footer small {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+/* ── Utilities ─────────────────────────────────────────── */
+.text-muted {
+    color: var(--color-text-muted) !important;
+}
+
+/* ── Gradient Divider (portfolio-style) ────────────────── */
+.section-divider {
+    width: 4rem;
+    height: 0.25rem;
+    background: linear-gradient(to right, var(--color-accent), var(--color-accent-secondary));
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
 }

@@ -1,5 +1,5 @@
 // Watchlist CRUD operations
-const API_URL = '/api/watchlist';
+const API_URL = `${BASE_PATH}/api/watchlist`;
 
 async function loadWatchlist() {
     const activeOnly = document.getElementById('activeOnlyToggle').checked;
