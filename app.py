@@ -55,6 +55,11 @@ def create_app(config_name=None):
     app.register_blueprint(api_stats, url_prefix='/api/stats')
 
     with app.app_context():
+        # Ensure instance directory exists for SQLite
+        db_uri = app.config.get('SQLALCHEMY_DATABASE_URI', '')
+        if db_uri.startswith('sqlite:///'):
+            db_path = db_uri.replace('sqlite:///', '')
+            os.makedirs(os.path.dirname(db_path), exist_ok=True)
         db.create_all()
 
     return app
